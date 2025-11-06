@@ -3,269 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>胡钟毓的个人主页</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>我的个人Blog</title>
     <style>
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            font-family: 'Arial', '微软雅黑', sans-serif;
         }
         body {
-            font-family: "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8f4f8 100%);
+            background-color: #f8f9fa;
             color: #333;
-        }
-        /* 英雄区样式 */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #fff 0%, #f0f8fb 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 193, 7, 0.1);
-            top: 20%;
-            left: 20%;
-            animation: float 8s ease-in-out infinite;
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(72, 187, 120, 0.1);
-            bottom: 20%;
-            right: 20%;
-            animation: float 6s ease-in-out infinite reverse;
-        }
-        @keyframes float {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, -20px); }
-            100% { transform: translate(0, 0); }
-        }
-        .title {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-        .subtitle {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            color: #4a5568;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #718096;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-20px) translateX(-50%); }
-            60% { transform: translateY(-10px) translateX(-50%); }
-        }
-        /* 板块样式 */
-        .sections {
-            padding: 8rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 8rem;
-        }
-        .section-card {
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .section-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            transform: translateY(-100%);
-            transition: transform 0.5s ease;
-        }
-        .section-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-        .section-card:hover::before {
-            transform: translateY(0);
-        }
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .section-icon {
-            font-size: 2.5rem;
-            opacity: 0.8;
-        }
-        .section-content {
-            font-size: 1.1rem;
             line-height: 1.6;
-            opacity: 0.9;
         }
-        /* 板块颜色区分 */
-        .intro {
-            background: linear-gradient(135deg, #4299e1, #38b2ac);
+        /* 导航栏样式 */
+        .nav {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .articles {
-            background: linear-gradient(135deg, #9f7aea, #ed8936);
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .daily {
-            background: linear-gradient(135deg, #48bb78, #f6ad55);
-        }
-        .contact {
-            background: linear-gradient(135deg, #e53e3e, #805ad5);
-        }
-        /* 版权区样式 */
-        .copyright {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: #2d3748;
-            color: #fff;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
-        .copyright::before {
-            content: "©";
+        .logo {
+            color: white;
             font-size: 1.5rem;
-            margin-right: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
         }
-        /* 响应式调整 */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        /* 主内容区样式 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
         @media (max-width: 768px) {
-            .section-grid {
-                gap: 1.5rem;
+            .container {
+                grid-template-columns: 1fr; /* 手机端单列布局 */
             }
-            .section-card {
-                padding: 2rem 1.5rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
+        }
+        /* 文章卡片样式 */
+        .post-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .post-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+            display: block;
+        }
+        .post-title:hover {
+            color: #3498db;
+        }
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .post-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        .read-more {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* 侧边栏样式 */
+        .sidebar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .sidebar-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 0.5rem;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            object-fit: cover;
+        }
+        .profile-desc {
+            color: #555;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tag {
+            background-color: #f1f1f1;
+            color: #555;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        .tag:hover {
+            background-color: #3498db;
+            color: white;
+        }
+        /* 页脚样式 */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
-    <!-- 英雄区（Hello World + 副标题） -->
-    <section class="hero">
-        <h1 class="title">Hello World</h1>
-        <p class="subtitle">I am Zhongyu</p >
-        <div class="scroll-indicator">
-            <<i class="fa fa-angle-down fa-2x"></</i>
-        </div>
-    </section>
-
-    <!-- 四大板块区域 -->
-    <section class="sections">
-        <div class="section-grid">
-            <!-- 个人简介 -->
-            <div class="section-card intro">
-                <h2 class="section-title">
-                    <<i class="fa fa-user section-icon"></</i>
-                    个人简介
-                </h2>
-                <div class="section-content">
-                    大家好呀，我是胡钟毓
-                </div>
-            </div>
-
-            <!-- 文章专栏 -->
-            <div class="section-card articles">
-                <h2 class="section-title">
-                    <<i class="fa fa-book section-icon"></</i>
-                    文章专栏
-                </h2>
-                <div class="section-content">
-                    这里会记录
-                </div>
-            </div>
-
-            <!-- 日常分享 -->
-            <div class="section-card daily">
-                <h2 class="section-title">
-                    <<i class="fa fa-leaf section-icon"></</i>
-                    日常分享
-                </h2>
-                <div class="section-content">
-                    分享我的
-                </div>
-            </div>
-
-            <!-- 联系方式 -->
-            <div class="section-card contact">
-                <h2 class="section-title">
-                    <<i class="fa fa-envelope section-icon"></</i>
-                    联系方式
-                </h2>
-                <div class="section-content">
-                    如果你喜欢我的分享，想和我交流，可以通过以下方式联系我～<br>
-                    邮箱：
-                    微信：
-                    欢迎大家来找我聊天呀！
-                </div>
+    <!-- 导航栏 -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href=" " class="logo">我的Blog</a >
+            <div class="nav-links">
+                <a href="#">首页</a >
+                <a href="#">文章</a >
+                <a href="#">分类</a >
+                <a href="#">关于我</a >
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- 版权区 -->
-    <footer class="copyright">
-        胡钟毓所有
+    <!-- 主内容区 -->
+    <div class="container">
+        <!-- 文章列表 -->
+        <div class="post-list">
+            <div class="post-card">
+                <a href="#" class="post-title">第一篇Blog：从零开始学习网页设计</a >
+                <div class="post-meta">2024-10-01 | 网页设计 | 阅读 123</div>
+                <p class="post-excerpt">本文将分享我作为初学者，如何一步步掌握HTML、CSS基础，设计出属于自己的个人Blog。从框架搭建到样式优化，全程干货无废话...</p >
+                <a href="#" class="read-more">阅读全文 →</a >
+            </div>
+            <div class="post-card">
+                <a href="#" class="post-title">Python初学者必备的5个实用工具</a >
+                <div class="post-meta">2024-09-25 | 编程学习 | 阅读 98</div>
+                <p class="post-excerpt">作为Python新手，选择合适的工具能让学习效率翻倍。本文整理了我常用的代码编辑器、调试工具、学习资源，帮助大家少走弯路...</p >
+                <a href="#" class="read-more">阅读全文 →</a >
+            </div>
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <h3 class="sidebar-title">关于博主</h3>
+            < img src="https://via.placeholder.com/100" alt="博主头像" class="profile-img">
+            <p class="profile-desc">一名热爱编程与分享的学生，专注于Python学习和网页设计，记录成长路上的点滴。</p >
+            
+            <h3 class="sidebar-title">文章分类</h3>
+            <div class="tag-list">
+                <a href="#" class="tag">网页设计</a >
+                <a href="#" class="tag">Python编程</a >
+                <a href="#" class="tag">学习笔记</a >
+                <a href="#" class="tag">工具分享</a >
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2024 我的个人Blog | 专注于编程与设计的学习分享</p >
     </footer>
-
-    <script>
-        // 滚动动画效果：板块进入视图时淡入
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-card').forEach(card => {
-            card.style.opacity = "0";
-            card.style.transform = "translateY(50px)";
-            card.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-            observer.observe(card);
-        });
-    </script>
 </body>
 </html>
